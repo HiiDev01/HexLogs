@@ -1,0 +1,269 @@
+.register{
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.FormWrapper{
+  width: 35%;
+  background: var(--shade); 
+  border-radius: 10px;
+  padding: 20px 0px;
+  box-shadow: 0px 1px 3px var(--hover-shadow);
+}
+.header{
+  width: 100%;
+}
+.Logowrap{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0px 10px 0px;
+}
+.Logowrap img{
+  width: 35px;
+  height: 35px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px var(--shadow-two);
+}
+.logo{
+  width: max-content;
+}
+.logo h1{
+  font-size: 1.3rem;
+  color: var(--off-white);
+  font-family: var(--font-two);
+  font-weight: bolder;
+  text-transform: capitalize;
+}
+.header .minp{
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0px 0px 15px 0px;
+}
+.header .maxp{
+  font-size: 0.6rem;
+  color: var(--off-white);
+  font-family: var(--font-two);
+  font-weight: 500;
+  text-align: center;
+  margin: 0px 0px 50px 0px;
+}
+
+.formBody{
+  padding: 0px 5%;
+}
+.formBody form label{
+  display: block;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: bolder;
+  color: var(--off-white);
+  margin: 0px 0px 8px 0px;
+}
+.formBody form input{
+  width: 100%;
+  margin: 0px 0px 20px 0px;
+  padding: 15px;
+  background-color: transparent;
+  border: 1px solid var(--translucent);
+  font-size: 1rem;
+  font-family: var(--font-two);
+  border-radius: 5px;
+  color: var(--off-white);
+  font-family: var(--font-two);
+  font-weight: bold;
+}
+.formBody form input:focus{
+  outline: 1px solid var(--off-white);
+}
+.formBody form input::placeholder{
+  font-size: 1rem;
+  color: var(--off-white);
+  font-family: var(--font-two);
+  font-weight: 400;
+}
+.formBody .rememberCon{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap:5px;
+  margin: 0px 0px 20px 0px;
+}
+.formBody .rememberCon input{
+  width: max-content;
+  margin: 0px;
+}
+.rememberCon .rememberp{
+  display: flex;
+  align-items: center;
+  width: max-content;
+  font-size: 0.8rem;
+  color: var(--off-white);
+  font-family: var(--font-two);
+}
+.rememberCon .rememberp a{
+  font-size: 0.7rem;
+  margin: 0px 0px 0px 5px;
+  font-family: var(--font-two);
+  display: flex;
+  align-items: center;
+ /* background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;*/
+  text-decoration: underline;
+}
+.formBody form a{
+  font-size: 0.8rem;
+  color: var(--off-white);
+  font-family: var(--font-two);
+  text-transform: capitalize;
+  font-weight: 500;
+  display: block;
+  margin: 0px 0px 40px 0px;
+}
+.formBody form button{
+  width: 100%;
+  padding: 12px;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  font-family: var(--font-two);
+  font-weight: bolder;
+  background: var(--grade);
+  border: none;
+  color: var(--primary);
+  border-radius: 5px;
+  margin: 0px 0px 30px 0px;
+  cursor: pointer;
+}
+.formBody .or{
+  text-align: center;
+  font-family: var(--font-two);
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: var(--off-white);
+  position: relative;
+  margin: 0px 0px 20px 0px;
+}
+.formBody .or::before{
+  position: absolute;
+  content: '';
+  width: 48%;
+  height: 1px;
+  top: 53%;
+  right: 0;
+  background-color: var(--hover-shadow);
+}
+.formBody .or::after{
+  position: absolute;
+  content: '';
+  width: 48%;
+  height: 1px;
+  top: 53%;
+  left: 0;
+  background-color: var(--hover-shadow);
+}
+.create{
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--off-white);
+}
+.create a{
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  cursor: pointer;
+  margin: 0px 0px 0px 3px;
+}
+
+@media (max-width: 1024px) {
+  .FormWrapper {
+    width: 50%;
+  }
+
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .formBody form input {
+    font-size: 0.95rem;
+    padding: 13px;
+  }
+
+  .formBody form button {
+    font-size: 0.85rem;
+  }
+}
+
+/* Mobile Landscape / Small Tablets (<=768px) */
+@media (max-width: 768px) {
+  .FormWrapper {
+    width: 70%;
+    padding: 25px 0;
+  }
+
+  .logo h1 {
+    font-size: 1.1rem;
+  }
+
+  .header .maxp {
+    font-size: 0.65rem;
+  }
+
+  .formBody form input {
+    padding: 12px;
+  }
+
+  .formBody form button {
+    padding: 10px;
+  }
+}
+
+/* Mobile Portrait (<=480px) */
+@media (max-width: 480px) {
+  .FormWrapper {
+    width: 90%;
+    padding: 20px 0;
+  }
+
+  .logo h1 {
+    font-size: 1rem;
+  }
+
+  .header .minp {
+    font-size: 0.75rem;
+  }
+
+  .header .maxp {
+    font-size: 0.6rem;
+    margin-bottom: 30px;
+  }
+
+  .formBody form label {
+    font-size: 0.75rem;
+  }
+
+  .formBody form input {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  .formBody form a {
+    font-size: 0.75rem;
+  }
+
+  .formBody form button {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  .create {
+    font-size: 0.65rem;
+  }
+}

@@ -77,10 +77,10 @@ const Nav = () => {
       </div>
 
       <div className='auth_buttons'>
-        <Link to='/' className='login_btn'>
+        <Link to='/login' className='login_btn'>
           Login
         </Link>
-        <Link to='/' className='signup_btn'>
+        <Link to='/register' className='signup_btn'>
           Sign Up
         </Link>
       </div>

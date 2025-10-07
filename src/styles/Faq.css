@@ -24,6 +24,91 @@
 }
 
 .faqAccordionContainer{
-  border: 1px solid white;
   padding: 0px 5%;
+}
+.FaqCards{
+  height: auto;
+  box-shadow: 0px 2px 10px var(--hover-shadow);
+  padding: 10px;
+  margin: 0px 0px 20px 0px;
+  border-radius: 10px;
+  background: var(--shade);
+}
+.faqCardHead{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 5px;
+  cursor: pointer;
+}
+.faqCardHead h2{
+  font-size: 1.15rem;
+  font-family: var(--font-two);
+  font-weight: bolder;
+  color: var(--off-white);
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.faqCardHead h2::first-letter{
+  text-transform: capitalize;
+}
+.faqCardHead button{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--grade);
+  border: none;
+  border-radius: 2px;
+  padding: 3px;
+  color: var(--off-white);
+}
+.faqBody{
+  padding: 10px 5px;
+  display: none;
+}
+.faqBody.active{
+  display: block;
+}
+.faqBody p{
+  font-size: 0.85rem;
+  font-family: var(--font-two);
+  line-height: 1.6;
+  color: var(--off-white);
+  font-weight: 300;
+}
+
+@media (max-width: 768px) {
+  .FaqContainer {
+    padding: 6% 4%;
+  }
+
+  .faqCardHead h2 {
+    font-size: 1rem;
+  }
+
+  .faqHeader p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .faqAccordionContainer{
+    padding: 0px 3%;
+  }
+  .FaqCards{
+    padding: 5px;
+  }
+  .faqCardHead {
+    gap: 0.5rem;
+  }
+
+  .faqCardHead h2 {
+    font-size: 0.9rem;
+  }
+
+  .faqCardHead button {
+    padding: 3px 4px;
+  }
 }
