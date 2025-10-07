@@ -1,0 +1,96 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+html::-webkit-scrollbar {
+  display: none;
+}
+
+:root {
+  --font-one:  "Montserrat", sans-serif;
+  --font-two: "Open Sans", sans-serif;
+  --primary: rgba(255, 255, 255, 0.87);
+  --bg-one: #000000;
+  --light-black:  rgba(0, 0, 0, 0.97);
+  --bg-two: #ffffff;
+  --off-white: #dcbaba;
+  --bg-three: #df2331;
+  --transparent: rgba(223,35,49, 65%);
+  --translucent: rgba(223,35,49, 45%);
+  --shadow: rgba(0, 0, 0, 0.24);
+  --shadow-two: rgba(0, 0, 0, 0.12);
+  --light-shadow: rgba(255, 255, 255, 0.1);
+  --hover-shadow: rgba(255, 255, 255, 0.2);
+  --gradient: linear-gradient(135deg, rgba(223,35,49, 0.2), rgba(0,0,0,0.8));
+  --light-gradient: linear-gradient(135deg, rgba(223,35,49, 0.2), rgba(0,0,0,0.8));
+  --grade: linear-gradient(90deg, rgba(223, 35, 49, 1) 0%, rgba(255, 85, 0, 0.9) 50%, rgba(255, 153, 0, 1) 100%);
+  --shade: linear-gradient(135deg, rgb(62, 23, 8), rgba(0,0,0,1));
+
+
+}
+body{
+  background-color: var(--bg-one);
+  position: relative;
+  min-height: 100vh;
+  font-family: var(--font-two);
+  color: var(--primary);
+  overflow-x: hidden; 
+  z-index: 0;
+  scrollbar-width: none; 
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+body::before{
+  position: fixed;
+  content: "";
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(223,35,49, 0.2), rgba(0,0,0,0.8));
+  background: radial-gradient(circle, rgba(223,35,49, 0.2), transparent 70%);
+  top: 0%;
+  left: 0%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+  z-index: -1;
+  animation: moveGlow1 18s infinite alternate ease-in-out;
+  border: 1px solid white;
+
+}
+body::after{
+  position: fixed;
+  content: "";
+  width: 600px;
+  height: 600px;
+  border-radius: 50%;
+  /*background: linear-gradient(135deg, rgba(223,35,49, 0.2), rgba(0,0,0,0.8));*/
+  background: radial-gradient(circle, rgba(223,35,49, 0.2), transparent 70%);
+  top: 8%;
+  left: 50%;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  filter: blur(100px);
+  -webkit-filter: blur(100px);
+  z-index: 0;
+  animation: moveGlow2 20s infinite alternate ease-in-out;
+  border: 1px solid white;
+}
+
+@keyframes moveGlow1 {
+  0%   { top: 0%; left: 2%; transform: scale(1); }
+  50%  { top: 1%; left: 3%; transform: scale(1.3); }
+  100% { top: 2%; left: 4%; transform: scale(1.1); }
+}
+
+@keyframes moveGlow2 {
+  0%   { top: 8%; left: 50%; transform: scale(1); }
+  50%  { top: 9%; left: 55%; transform: scale(1.4); }
+  100% { top: 10%; left: 60%; transform: scale(1.2); }
+}
