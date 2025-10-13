@@ -166,6 +166,43 @@
   color: var(--translucent);
 }
 
+.userAcc{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.userAcc .navpaybtn{
+  font-family: var(--font-two);
+  font-weight: bolder;
+  background: var(--grade); 
+  padding: 6px 12px;
+  color: var(--off-white);
+  text-transform: capitalize;
+  font-size: 0.7rem;
+  text-decoration: none;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+}
+.userAcc .navpaybtn span{
+  margin: 0px 0px 0px 10px;
+  background-color: var(--translucent);
+  padding: 3px 5px;
+  border-radius: 5px;
+}
+.userAcc .navlogoutbtn{
+  font-size: 0.7rem;
+  padding:  6px 10px;
+  font-family: var(--font-two);
+  font-weight: bolder;
+  border-radius: 5px;
+  border: none;
+  background: var(--bg-two);
+  text-transform: capitalize;
+  color: var(--bg-three);
+  cursor: pointer;
+}
+
 /* ====== RESPONSIVE NAVBAR ====== */
 @media screen and (max-width: 990px) {
   /* Hide only the nav links */
@@ -214,5 +251,18 @@
   }
   .sideBar{
     width: max-content;
+  }
+  .userAcc .navlogoutbtn{
+    font-size: 0.7rem;
+    padding:  6px 10px;
+    font-family: var(--font-two);
+    font-weight: bolder;
+    border-radius: 5px;
+    border: none;
+    background: var(--bg-two);
+    text-transform: capitalize;
+    color: var(--bg-three);
+    cursor: pointer;
+    display: none;
   }
 }

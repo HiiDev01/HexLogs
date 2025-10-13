@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import '../styles/Nav.css'
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import logo from '../assets/cat.png'
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -14,6 +14,8 @@ import { GrGroup } from "react-icons/gr";
 import { BsBoxSeamFill } from "react-icons/bs";
 import { PiBoundingBoxDuotone } from "react-icons/pi";
 import { RiAlignItemRightLine } from "react-icons/ri";
+import { supabase } from '../pages/Client'
+import { Navigate } from 'react-router-dom'
 
 
 
@@ -24,7 +26,7 @@ const navLinks = [
   { name: 'privacy', href: '/privacy' }
 ]
 const sidebar = [
-  {name: 'product', path: '/', icon: <AiOutlineProduct size={30}/>},
+  {name: 'product', path: '/product', icon: <AiOutlineProduct size={30}/>},
   {name: 'server', path: '/', icon: <FiServer size={22}/>},
   {name: 'order history', path: '/', icon: <RiAlignItemRightLine size={30}/>},
   {name: 'payment history', path: '/', icon: <MdOutlinePayments size={30}/>},
@@ -38,6 +40,49 @@ const sidebar = [
 
 const Nav = () => {
   const [isToggle, setIsToggle] = useState(false);
+  const [user, setUser] = useState(null);
+  const navigate = useNavigate()
+
+  useEffect( () =>{
+    const getUser = async () =>{
+      try {
+        const {data, error} = await supabase.auth.getUser()
+        if(data.user){
+          setUser(data.user)
+        }else{
+          setUser(null)
+        }
+        if (error) {
+          throw new error
+        }
+      } catch (error) {
+        console.log(error)
+      };
+    };
+    getUser();
+
+    //login and logout listener
+    const {data: listener} =  supabase.auth.onAuthStateChange((_event, session)=>{
+      setUser(session ?.user ?? null);
+    });
+
+    //cleningup
+    return () =>{
+      listener.subscription.unsubscribe()
+    }
+  }, []);
+
+  //handle PAY BTN
+  const handlePay = () => {
+    navigate('/deposit/new')
+  }
+
+  //signout function
+  const signOut = async () =>{
+    await supabase.auth.signOut();
+    setUser(null);
+    navigate("/")
+  }
 
   const handleToggle = () => {
     setIsToggle(!isToggle);
@@ -76,14 +121,30 @@ const Nav = () => {
         ))}
       </div>
 
-      <div className='auth_buttons'>
-        <Link to='/login' className='login_btn'>
-          Login
-        </Link>
-        <Link to='/register' className='signup_btn'>
-          Sign Up
-        </Link>
-      </div>
+      {user ? (
+        <div className='userAcc'>
+          <button href="" 
+            onClick={handlePay}
+            className='navpaybtn'>
+            add fund
+            <span>
+              &#8358; 0.00
+            </span>
+          </button>
+          <button onClick={signOut} className='navlogoutbtn'>
+            logout
+          </button>
+        </div>
+      ) : (
+        <div className='auth_buttons'>
+          <Link to='/login' className='login_btn'>
+            Login
+          </Link>
+          <Link to='/register' className='signup_btn'>
+            Sign Up
+          </Link>
+        </div>
+      )}
 
       {isToggle && <div className='sideBar'>
         {sidebar.map((bar, index)=>(
