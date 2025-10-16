@@ -57,7 +57,7 @@
   color: var(--bg-two);
   box-shadow: 0px 4px 6px var(--shadow);
   border-radius: 5px;
-  margin: 0px 0px 50px 0px;
+  margin: 0px 0px 10px 0px;
 }
 .discountCon{
   width: 100%;
@@ -166,7 +166,7 @@
 
 .productContainer {
   width: 100%;
-  padding: 0 5%;
+  padding: 0 3%;
 }
 
 .productwrap {
@@ -176,7 +176,7 @@
 
 .searchBar {
   width: 100%;
-  padding: 0 5%;
+  padding: 0 2%;
   display: flex;
   align-items: stretch;
   gap: 10px;
@@ -206,7 +206,7 @@
 }
 
 .searchBar button {
-  padding: 10px;
+  padding: 10px 10px;
   border-radius: 6px;
   border: none;
   color: var(--off-white);
@@ -225,7 +225,7 @@
   color: var(--bg-two);
   box-shadow: 0 4px 6px var(--shadow);
   border-radius: 5px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
 }
 
 .discountCon {
@@ -251,176 +251,390 @@
   font-weight: 500;
   color: var(--translucent);
 }
-
-/* --- Accordion Section --- */
-.productAccordion {
-  border: 1px solid var(--off-white);
-  padding: 10px;
-}
-
-.accordItem {
-  border: 1px solid blue;
-  margin-bottom: 40px;
-}
-
-.accordHead {
+.sorting{
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px;
-  background: var(--grade);
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  flex-wrap: nowrap;
-  overflow-x: auto;
-  white-space: nowrap;
+  padding: 0px 20px;
+  margin: 0px 0px 10px 0px;
 }
-
-.accordHeadText {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.accordHeadText h3 {
-  font-size: 0.8rem;
-  font-family: var(--font-two);
-  font-weight: bolder;
-  text-transform: capitalize;
-  color: var(--off-white);
-}
-
-.accordHeadText span {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.6rem;
-  height: 20px;
-  width: 20px;
-  border-radius: 50%;
-  background: var(--light-gradient);
-  color: var(--off-white);
-}
-
-.accordHeadBtn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.accordHeadBtn button {
-  background: var(--light-gradient);
-  color: var(--off-white);
+.allsort{
   border: none;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 5px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.accordHeadBtn a {
-  font-family: var(--font-two);
-  font-size: 0.7rem;
-  background: var(--light-gradient);
-  padding: 5px;
-  border-radius: 5px;
+  background-color: transparent;
   color: var(--off-white);
-  font-weight: bold;
+}
+.sortBtncon{
+  width: max-content;
+}
+.sortBtncon select{
+  padding: 5px 5px;
+  background-color: transparent;
+  color: var(--off-white);
+  border: 1px solid var(--off-white);
+  text-transform: capitalize;
+  font-family: var(--font-two);
+  font-weight: bolder;
+  border-radius: 2px;
+}
+.sortBtncon select:focus{
+  border: 2px solid var(--translucent);
+  outline: none;
+}
+.sortBtncon select option{
+  color: var(--bg-one);
+}
+.productListCon{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  background-color: var(--bg-two);
+  min-height: 10px;
+  gap: 20px;
+  border-radius: 10px;
+  padding: 10px;
+}
+.products{
+  flex: 1;
   display: flex;
   align-items: center;
-  gap: 5px;
-  text-decoration: none;
+  justify-content: space-between;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: var(--bg-two);
+  box-shadow:   0px 0px 2px var(--shadow),   
+                0px 1px 2px rgba(0, 0, 0, 0.04), 
+                0px 2px 3px rgba(0, 0, 0, 0.02)
+}
+.chilOne{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.chilOne .imgCon{
+  width: 55px;
+  height: 55px;
+  background: var(--grade);
+  padding: 8px;
+  border-radius: 8px;
+}
+.chilOne .imgCon img{
+  width: 100%;
+  height: 100%;
+}
+.childOneDet h3{
+  color: var(--light-black);
+  font-size: 0.7em;
+  font-family: var(--font-two);
+  font-weight: bolder;
+  margin: 0px 0px 15px 0px;
+}
+.childOneDet p{
+  font-size: 0.6rem;
+  color: var(--light-black);
+  font-family: var(--font-two);
+  font-weight: 500;
+}
+.childTwoDet{
+  width: max-content;
+}
+.childTwoDet small{
+  font-size: 0.8rem;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bolder;
+  display: block;
+  margin: 0px 0px 5px 0px;
+}
+.childTwoDet button{
+  display: block;
+  width: max-content;
+  padding: 6px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--bg-two);
+  background: var(--grade);
+  border: none;
+  border-radius: 6px;
+  opacity: 0.5;
+  cursor: pointer;
+  transition: opacity all 0.2s ease;
+}
+.childTwoDet button:hover{
+  opacity: 0.7;
+  transition: opacity all  0.2s ease;
+}
+.childTwoDet a{
+  font-size: 0.7rem;
+  color: orange;
+  font-weight: bolder;
+  text-decoration: underline;
+}
+
+.cartPopupWrapper{
+  width: 100%;
+  position: fixed;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--light-gradient);
+}
+.cartPopupBox{
+  width: 35%;
+  background-color: var(--bg-two);
+  border-radius: 10px;
+  padding: 0px;
+  position: relative;
+}
+.closeCart{
+  position: absolute;
+  right: 5%;
+  top: 4%;
+  background-color: transparent;
+  border: none;
+  color: var(--bg-two);
+  font-family: var(--font-two);
+  font-weight: bolder;
+}
+.closeCart:hover{
+  color: var(--grade);
   cursor: pointer;
 }
 
-.accordBody{
-  min-height: 30vh;
-  background-color: var(--primary);
+.cartBox{
+  padding: 30px 20px;
+}
+.cartnav{
+  width: 100%;
+  background: var(--grade);
+  color: var(--off-white);
+  text-transform: capitalize;
+  font-size: 0.6rem;
+  padding: 15px 20px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+.carthead{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0px 0px 30px 0px;
+}
+.cartheaditem{
+  width: 100;
+  flex: 1;
+  border: 1px solid red;
+  padding: 10px;
+  color: var(--light-black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-family: var(--font-two);
+  font-weight: 400;
+  border-radius: 3px;
+}
+.quantityNumb{
+  font-size: 0.9rem;
+  font-weight: bolder;
+  color: green;
+}
+.priceNumb{
+  font-size: 0.9rem;
+  font-weight: bolder;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.quantity{
+  width: max-content;
+  padding: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0px 0px 0.5px var(--shadow);
+  margin: 0px 0px 40px 0px;
+  text-transform: capitalize;
+}
+.quantity button{
+  font-family: var(--font-two);
+  font-weight: bolder;
+  padding: 5px 20px;
+  border: none;
+  font-size: 1rem;
+}
+.quantity span{
+  padding: 5px 20px;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-family: var(--font-two);
+  font-weight: bolder;
+}
+.totalPrice{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: red;
+  padding: 10px;
+  background: var(--off-white);
+  border-radius: 5px;
+  margin: 0px 0px 20px 0px;
+  text-transform: capitalize;
+}
+.ttprice{
+  font-weight: bolder;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.8rem;
+}
+.ttNumber{
+  color: purple;
+  font-weight: bolder;
+  font-family: var(--font-two);
+  font-size: 0.8rem;
+}
+.purchasebtn{
   display: block;
+  width: 100%;
+  padding: 12px;
+  text-transform: capitalize;
+  background: var(--grade);
+  color: var(--off-white);
+  font-family: var(--font-two);
+  font-weight: bolder;
+  border: none;
+  border-radius: 3px;
 }
-.accordBody.active{
-  display: none;
-}
+/* ----------- RESPONSIVE DESIGN ----------- */
 
+/* Small Screens (mobile: up to 600px) */
+@media (max-width: 600px) {
 
-/* ------------------- */
-
-/* --- Tablet screens (max-width: 990px) --- */
-@media (max-width: 990px) {
   .searchBar {
-    flex-direction: column;
+    gap: 8px;
   }
 
-  .searchBar input {
+  .searchBar button {
     width: 100%;
-  }
-
-  .productDiscount {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-
-  .discountCon {
-    flex-direction: column;
-    gap: 10px;
+    padding: 5px 5px;
   }
 
   .discountCon h1 {
     font-size: 1rem;
   }
-}
 
-/* --- Mobile screens (max-width: 600px) --- */
-@media (max-width: 600px) {
-  .productContainer {
-    padding: 0 3%;
+  .productListCon {
+    grid-template-columns: 1fr; /* 1 column on small screens */
+    gap: 15px;
+    padding: 10px;
   }
 
-  .searchBar {
-    padding: 0 3%;
+  .products {
+    flex-wrap: nowrap;
+    gap: 10px;
+    padding: 10px;
   }
 
-  .searchBar input {
-    font-size: 0.9rem;
-    padding: 12px;
+  .chilOne {
+    flex-direction: row;
+    gap: 10px;
   }
 
-  .searchBar button {
-    padding: 10px 15px;
-    font-size: 0.85rem;
+  .chilOne .imgCon {
+    width: 50px;
+    height: 50px;
   }
 
-  .discountCon h1 {
-    font-size: 0.9rem;
+  .childOneDet h3 {
+    font-size: 0.8rem;
   }
 
-
-
-  .accordHeadText h3 {
-    font-size: 0.75rem;
-  }
-
-  .accordHeadBtn {
-    gap: 5px;
-  }
-
-  .accordHeadBtn a,
-  .accordHeadBtn button {
+  .childOneDet p {
     font-size: 0.6rem;
-    padding: 4px 6px;
+  }
+
+  .childTwoDet small {
+    font-size: 0.8rem;
+  }
+
+  .childTwoDet button {
+    padding: 5px 10px;
+    font-size: 0.7rem;
+  }
+
+  .sorting {
+    gap: 10px;
   }
 }
 
-/* --- Extra small screens (max-width: 400px) --- */
-@media (max-width: 400px) {
-  .discountCon h1 {
-    font-size: 0.85rem;
+/* Medium Screens (tablet: 601px–992px) */
+@media (min-width: 601px) and (max-width: 992px) {
+
+  .productListCon {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
   }
 
-  .accordHeadText h3 {
-    font-size: 0.7rem;
+  .discountCon h1 {
+    font-size: 1.1rem;
+  }
+
+  .products {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .chilOne .imgCon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .childTwoDet small {
+    font-size: 0.9rem;
+  }
+}
+
+/* Large Screens (desktop: 993px and above) */
+@media (min-width: 993px) {
+  .productListCon {
+    grid-template-columns: repeat(3, 1fr); /* default */
+  }
+
+  .discountCon h1 {
+    font-size: 1.2rem;
+  }
+}
+@media (max-width: 1024px) {
+  .cartPopupBox {
+    width: 50%;
+  }
+}
+@media (max-width: 768px) {
+  .cartPopupBox {
+    width: 70%;
+  }
+
+  .cartBox {
+    padding: 20px 15px;
+  }
+
+  .quantity button {
+    padding: 5px 15px;
+  }
+
+  .cartnav {
+    font-size: 0.75rem;
+    padding: 12px 15px;
   }
 }

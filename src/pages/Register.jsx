@@ -26,6 +26,7 @@ const Register = () => {
   }
   const handleRegister = async (e) => {
     e.preventDefault()
+    
     try {
       let { data, error } = await supabase.auth.signUp({
         email: formData.email,

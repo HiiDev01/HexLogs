@@ -15,6 +15,7 @@ import { BsBoxSeamFill } from "react-icons/bs";
 import { PiBoundingBoxDuotone } from "react-icons/pi";
 import { RiAlignItemRightLine } from "react-icons/ri";
 import { supabase } from '../pages/Client'
+import { useAuth } from '../context/AuthProvider'
 import { Navigate } from 'react-router-dom'
 
 
@@ -40,48 +41,15 @@ const sidebar = [
 
 const Nav = () => {
   const [isToggle, setIsToggle] = useState(false);
-  const [user, setUser] = useState(null);
-  const navigate = useNavigate()
+  const  {user} = useAuth()
+  const navigate = useNavigate();
 
-  useEffect( () =>{
-    const getUser = async () =>{
-      try {
-        const {data, error} = await supabase.auth.getUser()
-        if(data.user){
-          setUser(data.user)
-        }else{
-          setUser(null)
-        }
-        if (error) {
-          throw new error
-        }
-      } catch (error) {
-        console.log(error)
-      };
-    };
-    getUser();
-
-    //login and logout listener
-    const {data: listener} =  supabase.auth.onAuthStateChange((_event, session)=>{
-      setUser(session ?.user ?? null);
-    });
-
-    //cleningup
-    return () =>{
-      listener.subscription.unsubscribe()
-    }
-  }, []);
-
-  //handle PAY BTN
-  const handlePay = () => {
-    navigate('/deposit/new')
+  const handlePay = () =>{
+    navigate('/product')
   }
-
-  //signout function
-  const signOut = async () =>{
-    await supabase.auth.signOut();
-    setUser(null);
-    navigate("/")
+  const signOut = () =>{
+    supabase.auth.signOut()
+    navigate('/')
   }
 
   const handleToggle = () => {
@@ -123,7 +91,7 @@ const Nav = () => {
 
       {user ? (
         <div className='userAcc'>
-          <button href="" 
+          <button 
             onClick={handlePay}
             className='navpaybtn'>
             add fund
