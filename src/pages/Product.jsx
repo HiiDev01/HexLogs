@@ -60,12 +60,33 @@ const Product = () => {
     setQuantity(prev => (prev > 1 ? prev - 1 : 1))
   }
 
+  const totalPrice = selectedProduct ? selectedProduct.price * quantity : 0;
+
   const handlePurchase = async() =>{
+
     if(!user){
       toast.error('signIn to continue purchase')
       navigate('/login');
       return
     }
+  
+    const {data: productData, error: dataError} = await supabase
+    .from('products')
+    .select("id, quantity, price")
+    .eq("id", selectedProduct.id)
+    .single()
+
+    if(dataError){
+      console.log('failed to fetch quantity data')
+      return;
+    }
+    const avaliableQty = productData.quantity;
+    if(quantity > avaliableQty){
+      toast.error(`there is only ${productData.quantity} for purchase`);
+      return
+    }
+
+
     const order = {
       user_id: user.id,
       product_id: selectedProduct.id,
@@ -78,6 +99,11 @@ const Product = () => {
     .insert([order])
     .select()
 
+    await supabase
+    .from('products')
+    .update({quantity: selectedProduct.quantity - quantity})
+    .eq('id', selectedProduct.id)
+
     if(error){
       console.log('failes to insert order');
       toast.error('failed to place order. try again')
@@ -88,7 +114,6 @@ const Product = () => {
     }
   }
 
-  const totalPrice = selectedProduct ? selectedProduct.price * quantity : 0;
   return (
     <div className='product'>
       <Nav />
