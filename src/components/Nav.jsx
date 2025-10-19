@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import '../styles/Nav.css'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
@@ -17,6 +17,7 @@ import { RiAlignItemRightLine } from "react-icons/ri";
 import { supabase } from '../pages/Client'
 import { useAuth } from '../context/AuthProvider'
 import { Navigate } from 'react-router-dom'
+import { IoClose } from "react-icons/io5";
 import { toast } from 'react-toastify'
 import { GiWallet } from "react-icons/gi";
 
@@ -42,14 +43,54 @@ const sidebar = [
 ]
 
 const Nav = () => {
+  const [payAmount, setPaymentAmount] = useState({pay_amount: '', pay_type: ''});
   const [isToggle, setIsToggle] = useState(false);
   const [balance, setBalance] = useState(0.00);
   const [gateway, setGateway] = useState(false)
+  const popedRef = useRef()
   const  {user} = useAuth()
   const navigate = useNavigate();
 
+
+  const handleTrackPayInfo = (e) =>{
+    const {name, value} = e.target
+    setPaymentAmount((prev)=>({
+      ...prev, 
+      [name]: value
+    }))
+  }
+  const handlePayment = async (e) =>{
+    e.preventDefault();
+    const amount = Number(payAmount.pay_amount);
+    const method = payAmount.pay_type.trim()
+    if(!amount || !method){
+      toast.error('failed: enter deposit amount and select payment type');
+      return;
+    }
+    if(payAmount.pay_amount < 10){
+      toast.error('amount can not be less than 10 naira')
+      return;
+    }
+    console.log(payAmount);
+  }
+  useEffect(()=>{
+    const handleCloseRef = (e) => {
+      if(popedRef.current && !popedRef.current.contains(e.target)){
+        setGateway(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleCloseRef)
+    return () =>{
+      document.removeEventListener("mousedown", handleCloseRef)
+    }
+  }, [])
+
   const handlePay = () =>{
-    setGateway(!gateway)
+    setGateway(true)
+  }
+  const handleClosePaymentCon = () =>{
+    setGateway(false)
   }
   const signOut = () =>{
     supabase.auth.signOut()
@@ -71,7 +112,7 @@ const Nav = () => {
     if(user){
       handleBalance()
     }
-  }, [user])
+  }, [user]);
 
   const handleBalance = async() =>{
     try {
@@ -159,22 +200,36 @@ const Nav = () => {
 
       {user  && gateway && (
         <div className='gatewayOverlay'>
-          <div className='gatewayCon'>
+          <div className='gatewayCon' ref={popedRef}>
             <header>
+              <button onClick={handleClosePaymentCon} className='clsBtN'><IoClose size={30}/></button>
               <h1><GiWallet size={60}/></h1>
               <h2>add fund</h2>
               <p>Top up your wallet instantly with your preferred payment method. and you are good to go</p>
             </header>
             <div className='gatewaymain'>
               <form action="">
-                <div>
-                  <label htmlFor="">enter amount <small>(NGN)</small></label>
-                  <input type="number" name="" id="" />
+                <div className='gatewaywrap gatewaywrapOne'>
+                  <label htmlFor="amount">enter amount <small>(NGN)</small></label>
+                  <input 
+                    type="number" 
+                    name="pay_amount" 
+                    id="amount"
+                    value={payAmount.pay_amount}
+                    onChange={handleTrackPayInfo}/>
                 </div>
-                <select name="" id="">
-                  <option value="">select payment method</option>
-                  <option value="">bank transfer</option>
-                </select>
+                <div className='gatewaywrap  gatewaywrapTwo'>
+                  <label htmlFor="select">select payment method</label>
+                  <select 
+                    name="pay_type" 
+                    id="select"
+                    value={payAmount.pay_type}
+                    onChange={handleTrackPayInfo}
+                  >
+                    <option value="">select payment method</option>
+                    <option value="">bank transfer</option>
+                  </select>
+                </div>
                 <button type="submit">pay now</button>
               </form>
             </div>

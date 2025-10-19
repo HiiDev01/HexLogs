@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import '../styles/Register.css'
 import logo from '../assets/cat.png'
 import { supabase } from './Client'
@@ -9,7 +9,7 @@ import { useAuth } from '../context/AuthProvider';
 
 
 const Register = () => {
-  const user = useAuth()
+  const user = useAuth();
   const [formData, setFormData] = useState({
     email: "", 
     password: "",
