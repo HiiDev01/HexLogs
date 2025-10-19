@@ -3,11 +3,13 @@ import '../styles/Register.css'
 import logo from '../assets/cat.png'
 import { supabase } from './Client'
 import { ToastContainer, toast } from 'react-toastify';
+import { useAuth } from '../context/AuthProvider';
 
 
 
 
 const Register = () => {
+  const user = useAuth()
   const [formData, setFormData] = useState({
     email: "", 
     password: "",
@@ -28,16 +30,39 @@ const Register = () => {
     e.preventDefault()
     
     try {
+
       let { data, error } = await supabase.auth.signUp({
         email: formData.email,
         password: formData.password
-      })
+      });
+
+
+
       if(error){
+        if(error.message.includes("already registered") || error.message.includes("User already exists")){
+          toast.error("This email is already registered. Please log in instead.");
+          return;
+        }
          toast.error(`Registration failed: ${error.message}`);
-      }else{
-        toast.success("Registration successful! Check your email to verify.");
-        setFormData({email: "", password: "", remember: true})
+         return
       }
+
+      const user_id = data.user?.id;
+      if(!user_id){
+        toast.error('could not get user id Try again')
+        return;
+      }
+      const {error: walletError} = await supabase
+      .from('user_balance')
+      .insert([{user_id: user_id,  balance: 0.00}]);
+      if(walletError){
+        toast.error('failed to create wallet', walletError)
+        return
+      }
+
+      toast.success("Registration successful. Check your email for comfirmation link");
+      setFormData({email: "", password: "", remember: true});
+
     } catch (error) {
        toast.error(`Error: ${error.message}`);
     }

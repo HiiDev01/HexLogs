@@ -202,7 +202,100 @@
   color: var(--bg-three);
   cursor: pointer;
 }
-
+.gatewayOverlay{
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  background: var(--gradient);
+}
+.gatewayCon{
+  width: 35%;
+  border: 1px solid white;
+  background-color: var(--primary);
+  backdrop-filter: blur(1);
+  padding-bottom: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.gatewayCon header{
+  width: 100%;
+  text-align: center;
+}
+.gatewayCon header h1{
+  background: var(--grade);
+  margin: 0px 0px 10px 0px;
+}
+.gatewayCon header h2{
+  font-size: 0.9rem;
+  font-weight: bolder;
+  text-transform: capitalize;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0px 0px 10px 0px;
+}
+.gatewayCon header p{
+  font-size: 0.8rem;
+  color: var(--light-black);
+  width: 70%;
+  margin: 0px auto 30px auto;
+}
+.gatewaymain{
+  padding: 0px 20px;
+}
+.gatewaymain label{
+  display: block;
+  font-size: 0.8rem;
+  margin: 0px 0px 3px 0px;
+  font-family: var(--font-two);
+  font-weight: 500;
+  background: var(--grade);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.gatewaymain form {
+  padding: 0px 10px;
+}
+.gatewaymain form > div{
+  width: 100%;
+  border: 1px solid red;
+  padding: 0px 0px;
+  margin: 0px 0px 15px 0px;
+}
+.gatewaymain form >  div input{
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  font-family: var(--font-two);
+  font-weight: 500;
+  color: var(--light-black);
+}
+.gatewaymain form  select{
+  width: 100%;
+  padding: 10px;
+  font-size: 0.9rem;
+  font-family: var(--font-two);
+  font-weight: 500;
+  color: var(--light-black);
+  margin: 0px 0px 35px 0px;
+}
+.gatewaymain form button{
+  width: 100%;
+  background: var(--grade);
+  color: var(--off-white);
+  font-family: var(--font-two);
+  font-weight: bold;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+}
 /* ====== RESPONSIVE NAVBAR ====== */
 @media screen and (max-width: 990px) {
   /* Hide only the nav links */

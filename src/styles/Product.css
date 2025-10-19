@@ -515,10 +515,15 @@
   font-weight: bolder;
   border: none;
   border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.1s ease;
+}
+.purchasebtn:hover{
+  opacity: 0.9;
+  transition: opacity 0.1s ease;
 }
 /* ----------- RESPONSIVE DESIGN ----------- */
 
-/* Small Screens (mobile: up to 600px) */
 @media (max-width: 600px) {
 
   .searchBar {

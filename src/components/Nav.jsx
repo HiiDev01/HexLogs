@@ -17,6 +17,8 @@ import { RiAlignItemRightLine } from "react-icons/ri";
 import { supabase } from '../pages/Client'
 import { useAuth } from '../context/AuthProvider'
 import { Navigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { GiWallet } from "react-icons/gi";
 
 
 
@@ -41,21 +43,19 @@ const sidebar = [
 
 const Nav = () => {
   const [isToggle, setIsToggle] = useState(false);
+  const [balance, setBalance] = useState(0.00);
+  const [gateway, setGateway] = useState(false)
   const  {user} = useAuth()
   const navigate = useNavigate();
 
   const handlePay = () =>{
-    navigate('/product')
+    setGateway(!gateway)
   }
   const signOut = () =>{
     supabase.auth.signOut()
     navigate('/')
   }
 
-  const handleToggle = () => {
-    setIsToggle(!isToggle);
-  }
-  
   useEffect(()=>{
     if(isToggle){
       document.body.style.overflow = 'hidden';
@@ -63,6 +63,38 @@ const Nav = () => {
       document.body.style.overflow = "auto";
     }
   })
+  const handleToggle = () => {
+    setIsToggle(!isToggle);
+  }
+
+  useEffect(()=>{
+    if(user){
+      handleBalance()
+    }
+  }, [user])
+
+  const handleBalance = async() =>{
+    try {
+      const {data, error} = await supabase
+      .from('user_balance')
+      .select("*")
+      .eq('user_id', user.id)
+      .single()
+  
+      if(error){
+        toast.error('failed to get user balance');
+        return
+      }
+      console.log('user balance', data.balance);
+      const balanceFormat = Number(data.balance).toFixed(2)
+      setBalance(balanceFormat)
+    } catch (error) {
+      toast.error('failed to get user balance');
+      setBalance(0)
+      console.log(error.message)
+    }
+  }
+
 
   return (
     <div className='navbar'>
@@ -96,7 +128,7 @@ const Nav = () => {
             className='navpaybtn'>
             add fund
             <span>
-              &#8358; 0.00
+              &#8358; {balance}
             </span>
           </button>
           <button onClick={signOut} className='navlogoutbtn'>
@@ -124,6 +156,32 @@ const Nav = () => {
           </a>
         ))}
       </div>}
+
+      {user  && gateway && (
+        <div className='gatewayOverlay'>
+          <div className='gatewayCon'>
+            <header>
+              <h1><GiWallet size={60}/></h1>
+              <h2>add fund</h2>
+              <p>Top up your wallet instantly with your preferred payment method. and you are good to go</p>
+            </header>
+            <div className='gatewaymain'>
+              <form action="">
+                <div>
+                  <label htmlFor="">enter amount <small>(NGN)</small></label>
+                  <input type="number" name="" id="" />
+                </div>
+                <select name="" id="">
+                  <option value="">select payment method</option>
+                  <option value="">bank transfer</option>
+                </select>
+                <button type="submit">pay now</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      )}
+
     </div>
   )
 }
