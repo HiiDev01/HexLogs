@@ -72,6 +72,9 @@ const Nav = () => {
       return;
     }
     console.log(payAmount);
+    toast.success(`you successfully deposit ${amount} via ${method}`)
+    setPaymentAmount({pay_amount: '', pay_type: ''});
+    navigate('/');
   }
   useEffect(()=>{
     const handleCloseRef = (e) => {
@@ -208,7 +211,7 @@ const Nav = () => {
               <p>Top up your wallet instantly with your preferred payment method. and you are good to go</p>
             </header>
             <div className='gatewaymain'>
-              <form action="">
+              <form action="" onSubmit={handlePayment}>
                 <div className='gatewaywrap gatewaywrapOne'>
                   <label htmlFor="amount">enter amount <small>(NGN)</small></label>
                   <input 
@@ -227,10 +230,10 @@ const Nav = () => {
                     onChange={handleTrackPayInfo}
                   >
                     <option value="">select payment method</option>
-                    <option value="">bank transfer</option>
+                    <option value="bank_transfer">bank transfer</option>
                   </select>
                 </div>
-                <button type="submit">pay now</button>
+                <button type="submit" >pay now</button>
               </form>
             </div>
           </div>
